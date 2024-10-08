@@ -39,23 +39,27 @@ public abstract class Employee {
     public void setSalary(double salary){
         this.salary = salary;
     }
-    public abstract double calculateSalary();
+    public abstract void calculateSalary(double salary);
 
     public String getCSVFormat() {
         return id + "," + name + "," + salary + "," + this.getClass().getSimpleName();
     }
 
+    @Override
+    public String toString() {
+        return getCSVFormat();
+    }
+
 }
 class FullTimeEmployee extends Employee{
-    private double monthlySalary;
     public FullTimeEmployee (int id, String name, double monthlySalary){
         super(id, name);
-        this.monthlySalary = monthlySalary;
+         calculateSalary(monthlySalary);
     }
 
     @Override
-    public double calculateSalary() {
-        return monthlySalary;
+    public void calculateSalary(double salray) {
+        setSalary(salray);
     }
 }
 class PartTimeEmployee extends Employee{
@@ -71,11 +75,12 @@ class PartTimeEmployee extends Employee{
         super(id, name);
         this.workHours = workHours;
         this.salaryPerHour = salaryPerHour;
+        setSalary(this.workHours * this.salaryPerHour);
     }
 
     @Override
-    public double calculateSalary() {
-        return workHours*salaryPerHour;
+    public void calculateSalary(double salary) {
+       setSalary(salary);
     }
 }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 
 
-public class FileOperationsImp implements FileOperations{
+public class FileOperationsImpBufferedInterface implements FileOperations{
 
     @Override
     public List<Employee> readEmployeesFromFile(String filename) {
