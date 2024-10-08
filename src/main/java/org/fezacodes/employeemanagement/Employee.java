@@ -10,6 +10,7 @@ package org.fezacodes.employeemanagement;
 //Implement an interface like FileOperations with methods for reading and writing employee data to a file.
 //Store employee data (such as name, salary, and type) in a file and implement methods to read and write this data to a CSV file.
 
+
 public abstract class Employee {
     private int id;
     private String name;
