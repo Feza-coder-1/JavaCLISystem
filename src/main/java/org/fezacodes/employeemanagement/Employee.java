@@ -10,6 +10,8 @@ package org.fezacodes.employeemanagement;
 //Implement an interface like FileOperations with methods for reading and writing employee data to a file.
 //Store employee data (such as name, salary, and type) in a file and implement methods to read and write this data to a CSV file.
 
+import java.util.Objects;
+
 // FQL --> this.getClass() --> org.fezacodes.employeemanagement.FullTimeEmployee
 // getSimpleName() --> FullTimeEmployee -->
 public abstract class Employee {
@@ -50,6 +52,18 @@ public abstract class Employee {
         return getCSVFormat();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && Double.compare(salary, employee.salary) == 0 && Objects.equals(name, employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, salary);
+    }
 }
 class FullTimeEmployee extends Employee{
     public FullTimeEmployee (int id, String name, double monthlySalary){
@@ -61,6 +75,8 @@ class FullTimeEmployee extends Employee{
     public void calculateSalary(double salray) {
         setSalary(salray);
     }
+
+
 }
 class PartTimeEmployee extends Employee{
     private int workHours;
@@ -82,5 +98,6 @@ class PartTimeEmployee extends Employee{
     public void calculateSalary(double salary) {
        setSalary(salary);
     }
+
 }
 
